@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "fstweaks",
+  "version": "${version}",
+  "name": "FabricTPA",
+  "description": "",
+  "authors": [],
+  "license": "MIT",
+  "icon": "assets/FabricTPA/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "de.hallotheengineer.fabrictpa.FabricTPA"
+    ],
+    "server": [
+      "de.hallotheengineer.fabrictpa.FabricTPA"
+    ]
+  },
+  "mixins": [
+    "fstweaks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
