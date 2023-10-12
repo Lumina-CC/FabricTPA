@@ -1,4 +1,6 @@
 # FabricTPA
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O5O0KPPEY)
+
 Very simple TPA Mod for Fabric (mod for own server, updates on demand)
 
 ## Features
