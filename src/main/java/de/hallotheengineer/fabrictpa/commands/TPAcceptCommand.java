@@ -10,7 +10,7 @@ import net.minecraft.util.Formatting;
 
 public class TPAcceptCommand {
     public static int exec(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("Du hast keine Teleport-Anfragen!").formatted(Formatting.RED), false);
+        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("You have no teleport requests!").formatted(Formatting.RED), false);
         return 1;
     }
     private static boolean checkRequests(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {

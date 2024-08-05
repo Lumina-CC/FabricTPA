@@ -18,34 +18,17 @@ public class TPACommand {
         ServerPlayerEntity player = source.getPlayerOrThrow();
 
         if (target == player) {
-            source.sendFeedback(() -> Text.literal("Du kannst dich nicht zu dir selber teleportieren!").formatted(Formatting.RED), false);
+            source.sendFeedback(() -> Text.literal("You can't teleport to yourself").formatted(Formatting.RED), false);
             return -1;
         }
         for (TeleportRequest request : TeleportHandler.getTpaRequests()) {
             if (request.getSource() == player) {
-                source.sendFeedback(() -> Text.literal("Du hast bereits eine laufende Anfrage!").formatted(Formatting.RED), false);
+                source.sendFeedback(() -> Text.literal("You already have ongoing requests").formatted(Formatting.RED), false);
                 return -1;
             }
         }
-        if (player.getServerWorld().getDimensionKey().equals(DimensionTypes.OVERWORLD)) {
-            if (player.experienceLevel >= 10) {
-                player.addExperienceLevels(-10);
-                TeleportHandler.newAskReqest(player, target, context);
-                context.getSource().sendFeedback(() -> Text.literal("Du hast "+target.getName().getString()+" eine Teleport-Anfrage geschickt").formatted(Formatting.GRAY), false);
-            } else {
-                context.getSource().sendFeedback(() -> Text.literal("Du hast nicht genügend Level für ein Teleport! (mindestens 10)").formatted(Formatting.GRAY), false);
-            }
-        } else {
-            if (player.experienceLevel >= 15) {
-                player.addExperienceLevels(-15);
-                TeleportHandler.newAskReqest(player, target, context);
-                context.getSource().sendFeedback(() -> Text.literal("Du hast "+target.getName().getString()+" eine Teleport-Anfrage geschickt").formatted(Formatting.GRAY), false);
-            } else {
-                context.getSource().sendFeedback(() -> Text.literal("Du hast nicht genügend Level für ein Teleport! (mindestens 15)").formatted(Formatting.GRAY), false);
-            }
-        }
-
-
+        TeleportHandler.newAskReqest(player, target, context);
+        context.getSource().sendFeedback(() -> Text.literal("Teleport request sent to "+target.getName().getString()).formatted(Formatting.GRAY), false);
         return 1;
     }
 }

@@ -15,12 +15,12 @@ public class TeleportHandler {
     public static void newAskReqest(ServerPlayerEntity source, ServerPlayerEntity target, CommandContext<ServerCommandSource> context) {
         TeleportRequest request = new TeleportRequest(source, target, context);
         tpaRequests.add(request);
-        target.sendMessage(Text.literal(source.getName().getString()+" möchte sich zu dir teleportieren.").formatted(Formatting.GREEN));
+        target.sendMessage(Text.literal(source.getName().getString()+" sent you a teleport request!").formatted(Formatting.GREEN));
     }
     public static void newAskHereReqest(ServerPlayerEntity source, ServerPlayerEntity target, CommandContext<ServerCommandSource> context) {
         TeleportRequest request = new TeleportRequest(target, source, context);
         tpaHereRequests.add(request);
-        target.sendMessage(Text.literal(source.getName().getString()+" möchte dich zu sich teleportieren.").formatted(Formatting.GREEN));
+        target.sendMessage(Text.literal(source.getName().getString()+" wants you to teleport to them").formatted(Formatting.GREEN));
     }
 
     public static List<TeleportRequest> getTpaRequests() {

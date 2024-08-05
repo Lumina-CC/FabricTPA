@@ -10,7 +10,7 @@ import net.minecraft.util.Formatting;
 
 public class TPDenyCommand {
     public static int exec(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("Du hast keine Teleport-Anfragen!").formatted(Formatting.RED), false);
+        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("You have no teleport requests!").formatted(Formatting.RED), false);
         return 1;
     }
     private static boolean checkRequests(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -18,7 +18,7 @@ public class TPDenyCommand {
             if (request.getTarget() == context.getSource().getPlayerOrThrow()) {
                 request.cancel();
                 TeleportHandler.removeTPARequest(request);
-                request.getSource().sendMessage(Text.literal("Deine Anfrage wurde abgelehnt!").formatted(Formatting.RED));
+                request.getSource().sendMessage(Text.literal("Your request was denied!").formatted(Formatting.RED));
                 return true;
             }
         }
@@ -26,7 +26,7 @@ public class TPDenyCommand {
             if (request.getTarget() == context.getSource().getPlayerOrThrow()) {
                 request.cancel();
                 TeleportHandler.removeTPAHereRequest(request);
-                request.getSource().sendMessage(Text.literal("Deine Anfrage wurde abgelehnt!").formatted(Formatting.RED));
+                request.getSource().sendMessage(Text.literal("Your request was denied!").formatted(Formatting.RED));
                 return true;
             }
         }

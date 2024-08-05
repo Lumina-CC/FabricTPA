@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "fstweaks",
+  "id": "fabrictpa",
   "version": "${version}",
   "name": "FabricTPA",
-  "description": "",
-  "authors": [],
+  "description": "Fabric TPA system",
+  "authors": [
+    "HalloTheEngineer",
+    "Featherwhisker"
+  ],
   "license": "MIT",
-  "icon": "assets/FabricTPA/icon.png",
   "environment": "server",
   "entrypoints": {
     "main": [
@@ -16,9 +18,7 @@
       "de.hallotheengineer.fabrictpa.FabricTPA"
     ]
   },
-  "mixins": [
-    "fstweaks.mixins.json"
-  ],
+  "mixins": [],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

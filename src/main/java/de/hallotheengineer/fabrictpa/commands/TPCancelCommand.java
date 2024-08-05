@@ -10,7 +10,7 @@ import net.minecraft.util.Formatting;
 
 public class TPCancelCommand {
     public static int exec(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("Du hast keine Teleport-Anfragen!").formatted(Formatting.RED), false);
+        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("You have no teleport requests!").formatted(Formatting.RED), false);
         return 1;
     }
     private static boolean checkRequests(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -18,7 +18,7 @@ public class TPCancelCommand {
             if (request.getSource() == context.getSource().getPlayerOrThrow()) {
                 request.cancel();
                 TeleportHandler.removeTPARequest(request);
-                context.getSource().sendFeedback(() -> Text.literal("Deine Teleport-Anfrage an "+request.getSource().getName().getString()+" wurde abgebrochen").formatted(Formatting.GRAY), false);
+                context.getSource().sendFeedback(() -> Text.literal("Your teleport request to "+request.getSource().getName().getString()+" has been canceled").formatted(Formatting.GRAY), false);
                 return true;
             }
         }
@@ -26,7 +26,7 @@ public class TPCancelCommand {
             if (request.getTarget() == context.getSource().getPlayerOrThrow()) {
                 request.cancel();
                 TeleportHandler.removeTPAHereRequest(request);
-                context.getSource().sendFeedback(() -> Text.literal("Deine Teleport-Here-Anfrage an "+request.getSource().getName().getString()+" wurde abgebrochen").formatted(Formatting.GRAY), false);
+                context.getSource().sendFeedback(() -> Text.literal("Your tpahere request to "+request.getSource().getName().getString()+" has been canceled").formatted(Formatting.GRAY), false);
                 return true;
             }
         }
