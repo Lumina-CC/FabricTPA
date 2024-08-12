@@ -9,13 +9,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 public class TPDenyCommand {
-    public static int exec(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if (!checkRequests(context)) context.getSource().sendFeedback(() -> Text.literal("You have no teleport requests!").formatted(Formatting.RED), false);
+    public static int exec(CommandContext<ServerCommandSource> context,String ownerUUID) throws CommandSyntaxException {
+        if (!checkRequests(context,ownerUUID)) context.getSource().sendFeedback(() -> Text.literal("You have no teleport requests!").formatted(Formatting.RED), false);
         return 1;
     }
-    private static boolean checkRequests(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static boolean checkRequests(CommandContext<ServerCommandSource> context,String ownerUUID) throws CommandSyntaxException {
         for (TeleportRequest request : TeleportHandler.getTpaRequests()) {
-            if (request.getTarget() == context.getSource().getPlayerOrThrow()) {
+            if (request.getTarget() == context.getSource().getPlayerOrThrow() && (ownerUUID == null || ownerUUID.equals(request.getOwner().getUuidAsString()))) {
                 request.cancel();
                 TeleportHandler.removeTPARequest(request);
                 request.getSource().sendMessage(Text.literal("Your request was denied!").formatted(Formatting.RED));
@@ -23,7 +23,7 @@ public class TPDenyCommand {
             }
         }
         for (TeleportRequest request : TeleportHandler.getTpaHereRequests()) {
-            if (request.getTarget() == context.getSource().getPlayerOrThrow()) {
+            if (request.getTarget() == context.getSource().getPlayerOrThrow() && (ownerUUID == null || ownerUUID.equals(request.getOwner().getUuidAsString()))) {
                 request.cancel();
                 TeleportHandler.removeTPAHereRequest(request);
                 request.getSource().sendMessage(Text.literal("Your request was denied!").formatted(Formatting.RED));

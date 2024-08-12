@@ -10,7 +10,7 @@ public class TeleportRequest {
     private final ServerPlayerEntity target;
     private BlockPos pos;
     private final CommandContext<ServerCommandSource> context;
-    public TeleportRequest(ServerPlayerEntity source, ServerPlayerEntity target, CommandContext<ServerCommandSource> context) {
+    public TeleportRequest(ServerPlayerEntity source, ServerPlayerEntity target,  CommandContext<ServerCommandSource> context) {
         this.source = source;
         this.target = target;
         this.context = context;
@@ -33,7 +33,7 @@ public class TeleportRequest {
     public ServerPlayerEntity getSource() {
         return source;
     }
-
+    public ServerPlayerEntity getOwner() {return context.getSource().getPlayer();}
     public ServerPlayerEntity getTarget() {
         return target;
     }

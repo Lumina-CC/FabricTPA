@@ -7,6 +7,8 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import static com.mojang.brigadier.arguments.StringArgumentType.getString;
+import static com.mojang.brigadier.arguments.StringArgumentType.string;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -19,9 +21,13 @@ public class Commands {
         LiteralArgumentBuilder<ServerCommandSource> tpCancelCommand = literal("tpcancel")
                 .executes(TPCancelCommand::exec);
         LiteralArgumentBuilder<ServerCommandSource> tpAcceptCommand = literal("tpaccept")
-                .executes(TPAcceptCommand::exec);
+                .then(argument("ownerUUID", string())
+                        .executes(ctx -> TPAcceptCommand.exec(ctx,getString(ctx,"ownerUUID"))))
+                .executes(ctx -> TPAcceptCommand.exec(ctx,null));
         LiteralArgumentBuilder<ServerCommandSource> tpDenyCommand = literal("tpdeny")
-                .executes(TPDenyCommand::exec);
+                .then(argument("ownerUUID", string())
+                        .executes(ctx -> TPDenyCommand.exec(ctx,getString(ctx,"ownerUUID"))))
+                .executes(ctx -> TPDenyCommand.exec(ctx,null));
         LiteralArgumentBuilder<ServerCommandSource> tpaHereCommand = literal("tpahere")
                 .then(argument("player", EntityArgumentType.player())
                         .executes(TPAHereCommand::exec));

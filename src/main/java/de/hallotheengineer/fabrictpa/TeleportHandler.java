@@ -20,11 +20,11 @@ public class TeleportHandler {
         target.sendMessage(Text.literal(source.getName().getString()+" wants to teleport to you\n")
                 .formatted(Formatting.GREEN)
                 .append(Text.literal("[Accept]")
-                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpaccept")))
+                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpaccept "+ source.getUuidAsString())))
                         .formatted(Formatting.GREEN))
                 .append("     ")
                 .append(Text.literal("[Deny]")
-                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpdeny")))
+                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpdeny "+ source.getUuidAsString())))
                 .formatted(Formatting.RED)));
     }
     public static void newAskHereReqest(ServerPlayerEntity source, ServerPlayerEntity target, CommandContext<ServerCommandSource> context) {
@@ -33,11 +33,11 @@ public class TeleportHandler {
         target.sendMessage(Text.literal(source.getName().getString()+" wants you to teleport to them\n")
                 .formatted(Formatting.GREEN)
                 .append(Text.literal("[Accept]")
-                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpaccept")))
+                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpaccept " + source.getUuidAsString())))
                         .formatted(Formatting.GREEN))
                 .append("     ")
                 .append(Text.literal("[Deny]")
-                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpdeny")))
+                        .setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/tpdeny " + source.getUuidAsString())))
                         .formatted(Formatting.RED)));
     }
 
